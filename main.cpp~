@@ -1,0 +1,105 @@
+#include <iostream>
+#include <cstring>
+#include <fstream>
+#include <string.h>
+#include <math.h>
+#include <iomanip>
+#include <stdlib.h>
+
+using namespace std;
+
+struct node{
+  int value;
+  node *nextnode; 
+
+}
+
+
+int main(){
+  node *queuehead = new node;
+  node *stackhead = new node;
+  node *queuetail = new node;
+  bool stillreading = true;
+  int input[100];
+  for (int x = 0; x <= 99; x++){
+    input[x] = -1;
+  }
+  int curr = 0;
+  while (stillreading){
+    
+    if(input[curr]>=0 && input[curr] <= 1000 && input[curr] != + && input[curr] != * && input[curr] != / && input[curr] != - && input[curr] != ^){
+      if(queuehead == NULL){
+	queuehead = enqueue(queuehead, input[curr]);
+	queuetail = queuehead;
+      }
+      else{
+	queuehead = enqueue(queuehead, input[curr]);
+      }
+    }
+    else if(input[curr] == + || input[curr] == - || input[curr] == * || input[curr] == / || input[curr] == ^){
+      
+
+    }
+    
+
+  }
+  
+
+}
+
+int peek(node *head){
+  return head->value;
+}
+node pop(node* head){
+  node* temp;
+  if(head == NULL){
+    temp = NULL;
+  }
+  else if(head->nextnode == NULL){
+    temp = NULL;
+    delete head;
+  }
+  else{
+    temp = head->nextnode;
+    delete head;
+  }
+  return temp;
+}
+node push(node* head, int i){
+  if(head == NULL){
+    node *temp = new node;
+    temp->value = i;
+    return temp;
+  }
+  else{
+    node *temp = new node;
+    temp->value = i;
+    temp->nextnode = head;
+    return temp;
+  }
+  
+
+}
+node enqueue(node* head, int i){
+  if(head == NULL){
+    node *temp = new node;
+    temp->value = i;
+    return temp;
+  }
+  else{
+    node *temp = new node;
+    temp->value = i;
+    temp->nextnode = head;
+    return temp;
+  }
+
+}
+node dequeue(node* head){
+  while((head->nextnode)-> nextnode != NULL){
+    head = head->nextnode
+  }
+  node *temp = head->nextnode;
+  head->nextnode = NULL;
+  delete temp;
+  return head;
+}
