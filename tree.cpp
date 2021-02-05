@@ -4,20 +4,12 @@
 
 using namespace std;
 
+treenode* tree::buildtree(){
 
-tree::tree(string inputs){
-
-}
-tree::~tree(){
-
-}
-
-void tree::buildtree(string inputs){
-
-  int inputs [100];
+  int inputs [100] = {1,-1,2,-4,3,-2,10};
   int counter = 0;
   while(inputs[counter]!= 0){
-    if(inputs[counter]>=0 && inputs[counter] <= 1000 && inputs[counter] != + && inputs[counter] != * && inputs[counter] != / && inputs[counter] != - && inputs[counter] != ^){
+    if(inputs[counter]>=0 && inputs[counter] <= 1000){
       stacknode *temp = new stacknode;
       treenode *branch = new treenode;
       temp->nextnode = head;
@@ -25,29 +17,116 @@ void tree::buildtree(string inputs){
       temp->treehead = branch;
       branch->value = inputs[counter];
     }
-    else if(input[curr] == + || input[curr] == - || input[curr] == * || input[curr] == / || input[curr] == ^){
+    else if(inputs[counter] == -1 || inputs[counter] == -2 || inputs[counter] == -3 || inputs[counter] == -4 || inputs[counter] == -5){
       stacknode *temp = new stacknode;
       treenode *branch = new treenode;
       branch->right = (head->treehead);
       branch->left = ((head->nextnode)->treehead);
       temp->nextnode = (head->nextnode)->nextnode;
       head = temp;
+      branch->value = inputs[counter];
     }
+  }
+  return head->treehead;
 
+}
+void tree::printinfix(treenode* temp){
+  if(temp != NULL){
+    if(temp->value == -1 || temp->value == -2 || temp->value == -3 || temp->value == -4 || temp->value == -5){
+      cout << "(";
+    }
+    printinfix(temp->left);
+    if(temp->value == -1 || temp->value == -2 || temp->value == -3 || temp->value == -4 || temp->value == -5){
+      if(temp->value == -1){
+        cout << "+";
+      }
+      else if(temp->value == -2){
+        cout << "-";
+      }
+      else if(temp->value == -3){
+        cout << "*";
+      }
+      else if(temp->value == -4){
+        cout << "/";
+      }
+      else if(temp->value == -5){
+        cout << "^";
+      }
+    }
+    else {
+      cout << temp->value;
+    }
+    printinfix(temp->right);
+    if(temp->value == -1 || temp->value == -2 || temp->value == -3 || temp->value == -4 || temp->value == -5){
+      cout << ")";
+    }
+  }
+}
+void tree::printprefix(treenode* temp){
+  if(temp != NULL){
+    if(temp->value == -1 || temp->value == -2 || temp->value == -3 || temp->value == -4 || temp->value == -5){
+      if(temp->value == -1){
+	cout << "+";
+
+      }
+      else if(temp->value == -2){
+	cout << "-";
+
+      }
+      else if(temp->value == -3){
+	cout << "*";
+	
+      }
+      else if(temp->value == -4){
+	cout << "/";
+	
+      }
+      else if(temp->value == -5){
+	cout << "^";
+      }
+    }
+    else {
+      cout << temp->value;
+    }
+    printprefix(temp->left);
+    printprefix(temp->right);
   }
 
-
 }
-void tree::printinfix(){
+void tree::printpostfix(treenode* temp){  
+    if(temp != NULL){
+      if(temp->value == -1 || temp->value == -2 || temp->value == -3 || temp->value == -4 || temp->value == -5){
+	printprefix(temp->left);
+	printprefix(temp->right);
+	if(temp->value == -1 || temp->value == -2 || temp->value == -3 || temp->value == -4 || temp->value == -5){
+	  if(temp->value == -1){
+	    cout << "+";
 
-
-}
-void tree::printprefix(node* temp){
-
-
-}
-void tree::printpostfix(nopde* temp){
-
-
+	  }
+	  else if(temp->value == -2){
+	    cout << "-";
+	    
+	  }
+	  else if(temp->value == -3){
+	    cout << "*";
+	    
+	  }
+	  else if(temp->value == -4){
+	    cout << "/";
+	    
+	  }
+	  else if(temp->value == -5){
+	    cout << "^";
+	  }
+	}
+	else {
+	  cout << temp->value;
+	}
+	
+      }
+      
+    }
+    
+    
 }
 

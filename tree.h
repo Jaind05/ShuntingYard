@@ -1,33 +1,26 @@
-#ifndef TREE_H
-#define TREE_H
 
-struct stacknode(){
-  stacknode *nextnode;
-  treenode *treehead;
-
-}
-struct treenode(){
+struct treenode{
   treenode *left;
   treenode *right;
   int value;
-}
+};
+struct stacknode{
+  stacknode *nextnode;
+  treenode *treehead;
+};
 
-class item
+class tree
 {
   
  public:
-  tree(string);
-  ~tree();
-  void buildtree(string);
-  void printinfix();
-  void printprefix();
-  void printpostfix();
+  treenode* buildtree();
+  void printinfix(treenode*);
+  void printprefix(treenode*);
+  void printpostfix(treenode*);
   
 
  private:
   stacknode* head;
-   int location; //room_id
 };
 
 
-#endif
