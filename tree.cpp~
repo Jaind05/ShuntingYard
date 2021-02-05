@@ -26,7 +26,6 @@ treenode* tree::buildtree(){
       head = temp;
       branch->value = inputs[counter];
     }
-    counter++;
   }
   cout << "Got here!" << endl;
   return head->treehead;
