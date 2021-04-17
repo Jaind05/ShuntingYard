@@ -1,7 +1,7 @@
 
 struct treenode{
-  treenode *left;
-  treenode *right;
+  treenode *left = NULL;
+  treenode *right = NULL;
   int value;
 };
 struct stacknode{
